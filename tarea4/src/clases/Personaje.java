@@ -2,8 +2,8 @@ package clases;
 
 
 
-public class Personaje {
-
+public abstract class Personaje {
+// estadisticas
 	protected int vida;
 	protected int vidaInicial;
 	protected int ataque;
@@ -70,8 +70,7 @@ public class Personaje {
 
 
 	
-	public void curar() {
-	}
+	
 
 
 	public void resetear() {

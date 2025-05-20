@@ -13,7 +13,7 @@ public class Mago extends Personaje{
 		magia = MAGIA;
 	}
 
-	@Override //No entiendo por que si la clase guerrero tiene defensa 10 y el enemigo un maximo de ataque de 10 la clase guerreroe es invencible practicamente
+	@Override 
 	public void atacar(Personaje otro) {
 		int fuerza_ataque;
 		if(magia>0) {
