@@ -67,12 +67,7 @@ public abstract class Personaje {
 	    int daño = (this.ataque - otro.getDefensa()) < 0 ? 0 : (this.ataque - otro.getDefensa());
 	    otro.setVida(otro.getVida() - daño);
 	}
-
-
 	
-	
-
-
 	public void resetear() {
 		this.vida = this.vidaInicial;
 	}

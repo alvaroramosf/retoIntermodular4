@@ -54,7 +54,7 @@ public class Programa {
 						juego.getJugador().atacar(enemigo);
 					} else if (accion == 2) {
 						System.out.println(juego.getJugador().getNombre() + " se cura");
-						juego.getJugador().curar();
+						((Jugable) juego.getJugador()).curar(); //Va a ser jugable siempre, otra opción sería cambiar getJugador para que devuelva jugable pero esto es mas sencillo y entiendo que es lo que se pide.
 					}
 
 					if (!enemigo.muerto()) {
