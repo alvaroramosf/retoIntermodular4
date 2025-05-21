@@ -1,7 +1,13 @@
 package programa;
 
 import java.util.Scanner;
-import clases.*;
+import clases.Personaje;
+import clases.Juego;
+import clases.Enemigo;
+import clases.Guerrero;
+import clases.Mago;
+import clases.Jugable;
+
 
 public class Programa {
 	public static void main(String[] args) {
@@ -10,7 +16,8 @@ public class Programa {
 
 		while (jugarDeNuevo) {
 			Juego juego = new Juego();
-
+			
+			System.out.println("Ronda más alta es de  " +  juego.getJugador() + " con  " + juego.getnRondas() + " realizadas " );
 			System.out.println("Bienvenido al juego:");
 			System.out.print("¿Cuántas rondas quieres jugar? ");
 			int nRondas = entrada.nextInt();
@@ -23,6 +30,7 @@ public class Programa {
 			System.out.println("2. Guerrero");
 			System.out.print("Elige (1, 2): ");
 			int clase = entrada.nextInt();
+			
 
 			if (clase == 1) {
 				juego.nuevoMago(nombre);
