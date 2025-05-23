@@ -1,12 +1,13 @@
 package programa;
 
 import java.util.Scanner;
-import clases.Personaje;
+//import clases.Personaje; DA WARRNING
 import clases.Juego;
 import clases.Enemigo;
-import clases.Guerrero;
-import clases.Mago;
+//import clases.Guerrero;
+//import clases.Mago;
 import clases.Jugable;
+import ioPuntuacion.ioPuntuacion;
 
 
 public class Programa {
@@ -17,7 +18,11 @@ public class Programa {
 		while (jugarDeNuevo) {
 			Juego juego = new Juego();
 			
-			System.out.println("Ronda más alta es de  " +  juego.getJugador() + " con  " + juego.getnRondas() + " realizadas " );
+			String[] mejorPuntuacion = ioPuntuacion.leerPuntuacion();
+			if (mejorPuntuacion != null) {
+				System.out.println("Mejor puntuación: " + mejorPuntuacion[0] + " ~ " + mejorPuntuacion[1]);
+			}
+			
 			System.out.println("Bienvenido al juego:");
 			System.out.print("¿Cuántas rondas quieres jugar? ");
 			int nRondas = entrada.nextInt();
@@ -88,7 +93,27 @@ public class Programa {
 
 			if (!juego.getJugador().muerto()) {
 				System.out.println("¡Has ganado el juego!");
+
+				int rondasActuales = juego.getRonda();
+				int recordAnterior;
+
+				// Busca mejor puntuacion
+				if (mejorPuntuacion != null) {
+					recordAnterior = Integer.parseInt(mejorPuntuacion[1]);
+				} else {
+					recordAnterior = 0;
+				}
+
+				// Compara la puntuación actual con la mejor anterior
+				if (rondasActuales > recordAnterior) {
+					System.out.println("NUEVO RECORD");
+					ioPuntuacion.escribirPuntuacion(juego.getJugador().getNombre(), rondasActuales);
+					
+					mejorPuntuacion = ioPuntuacion.leerPuntuacion();
+					System.out.println("Mejor puntuación: " + mejorPuntuacion[0] + " ~ " + mejorPuntuacion[1]);
+				}
 			}
+
 
 			System.out.print("¿Volver a jugar? (s/n): ");
 			entrada.nextLine();
