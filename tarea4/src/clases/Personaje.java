@@ -1,8 +1,9 @@
 package clases;
 
+import java.io.Serializable;
 
-
-public abstract class Personaje {
+public abstract class Personaje implements Serializable  {
+	private static final long serialVersionUID = 1L;
 // estadisticas
 	protected int vida;
 	protected int vidaInicial;

@@ -1,5 +1,6 @@
 package programa;
 
+import java.io.Serializable;
 import java.util.Scanner;
 //import clases.Personaje; DA WARRNING
 import clases.Juego;
@@ -10,7 +11,7 @@ import clases.Jugable;
 import ioPuntuacion.ioPuntuacion;
 
 
-public class Programa {
+public class Programa implements Serializable  {
 	public static void main(String[] args) {
 		Scanner entrada = new Scanner(System.in);
 		boolean jugarDeNuevo = true;
@@ -21,6 +22,18 @@ public class Programa {
 			String[] mejorPuntuacion = ioPuntuacion.leerPuntuacion();
 			if (mejorPuntuacion != null) {
 				System.out.println("Mejor puntuación: " + mejorPuntuacion[0] + " ~ " + mejorPuntuacion[1]);
+				System.out.println("¿Deseas cargar una partida guardada? (s/n)");
+				String cargar = entrada.nextLine();
+				Juego Juego = null;
+
+				if (cargar.equalsIgnoreCase("s")) {
+				    Juego = cargarPartida();
+				}
+
+				if (juego == null) {
+				    juego = new Juego();
+				    
+				}
 			}
 			
 			System.out.println("Bienvenido al juego:");
@@ -59,6 +72,7 @@ public class Programa {
 					System.out.println("Acciones:");
 					System.out.println("1. Atacar");
 					System.out.println("2. Curar");
+					System.out.println("3. Guardar");
 					System.out.print("Elige: ");
 					int accion = entrada.nextInt();
 

@@ -1,8 +1,9 @@
 package clases;
 
+import java.io.Serializable;
 import java.util.Random;
 
-public class Enemigo extends Personaje {
+public class Enemigo extends Personaje implements Serializable{
 	
 	public Enemigo() {};
 	//No entiendo por que si la clase guerrero tiene defensa 10 y 
