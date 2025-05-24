@@ -3,6 +3,7 @@ package clases;
 import java.io.Serializable;
 
 public class Mago extends Personaje implements Jugable , Serializable{
+	private static final long serialVersionUID = 1L; //Para el warning;
 	private static final int FUERZA_MAGIA = 20;
 	private static final int FUERZA_SIN_MAGIA = 5;
 	private static final int DEFENSA = 5;

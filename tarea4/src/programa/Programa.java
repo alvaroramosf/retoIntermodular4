@@ -1,62 +1,53 @@
 package programa;
 
-import java.io.Serializable;
 import java.util.Scanner;
-//import clases.Personaje; DA WARRNING
 import clases.Juego;
 import clases.Enemigo;
-//import clases.Guerrero;
-//import clases.Mago;
 import clases.Jugable;
+import clases.MiSerializable;
 import ioPuntuacion.ioPuntuacion;
 
 
-public class Programa implements Serializable  {
+public class Programa implements MiSerializable  {
 	public static void main(String[] args) {
 		Scanner entrada = new Scanner(System.in);
 		boolean jugarDeNuevo = true;
 
-		while (jugarDeNuevo) {
-			Juego juego = new Juego();
-			
+		while (jugarDeNuevo) {			
 			String[] mejorPuntuacion = ioPuntuacion.leerPuntuacion();
 			if (mejorPuntuacion != null) {
 				System.out.println("Mejor puntuación: " + mejorPuntuacion[0] + " ~ " + mejorPuntuacion[1]);
-				System.out.println("¿Deseas cargar una partida guardada? (s/n)");
-				String cargar = entrada.nextLine();
-				Juego Juego = null;
-
-				if (cargar.equalsIgnoreCase("s")) {
-				    Juego = cargarPartida();
-				}
-
-				if (juego == null) {
-				    juego = new Juego();
-				    
-				}
 			}
 			
-			System.out.println("Bienvenido al juego:");
-			System.out.print("¿Cuántas rondas quieres jugar? ");
-			int nRondas = entrada.nextInt();
-			entrada.nextLine();
-			juego.setnRondas(nRondas);
-			System.out.print("Introduce tu nombre: ");
-			String nombre = entrada.nextLine();
-			System.out.println("Elige tu clase:");
-			System.out.println("1. Mago");
-			System.out.println("2. Guerrero");
-			System.out.print("Elige (1, 2): ");
-			int clase = entrada.nextInt();
-			
+			System.out.println("¿Deseas cargar una partida guardada? (s/n)");
+			String cargar = entrada.nextLine();
+			Juego juego;
 
-			if (clase == 1) {
-				juego.nuevoMago(nombre);
+			if (cargar.equalsIgnoreCase("s")) {
+			    juego = MiSerializable.cargarPartida();
 			} else {
-				juego.nuevoGuerrero(nombre);
+				juego = new Juego(); //Creacion de personaje
+				System.out.println("Bienvenido al juego:");
+				System.out.print("¿Cuántas rondas quieres jugar? ");
+				int nRondas = entrada.nextInt();
+				entrada.nextLine();
+				juego.setnRondas(nRondas);
+				System.out.print("Introduce tu nombre: ");
+				String nombre = entrada.nextLine();
+				System.out.println("Elige tu clase:");
+				System.out.println("1. Mago");
+				System.out.println("2. Guerrero");
+				System.out.print("Elige (1, 2): ");
+				int clase = entrada.nextInt();
+				if (clase == 1) {
+					juego.nuevoMago(nombre);
+				} else {
+					juego.nuevoGuerrero(nombre);
+				}
+				
+				juego.iniciarJuego();
 			}
-
-			juego.iniciarJuego();
+			
 
 			while (!juego.finalJuego()) {
 				juego.setRonda(juego.getRonda() + 1);
@@ -82,7 +73,13 @@ public class Programa implements Serializable  {
 					} else if (accion == 2) {
 						System.out.println(juego.getJugador().getNombre() + " se cura");
 						((Jugable) juego.getJugador()).curar(); //Va a ser jugable siempre, otra opción sería cambiar getJugador para que devuelva jugable pero esto es mas sencillo y entiendo que es lo que se pide.
+					} else if (accion == 3) {
+					    MiSerializable.guardarPartida(juego);
+					    System.out.println("Partida guardada. Adios. ");
+					    entrada.close();
+					    return;
 					}
+
 
 					if (!enemigo.muerto()) {
 						System.out.println(enemigo.getNombre() + " ataca a " + juego.getJugador().getNombre());
@@ -93,7 +90,7 @@ public class Programa implements Serializable  {
 
 					System.out.println("Ronda: " + juego.getRonda() + "/" + juego.getnRondas());
 				}
-
+				
 				if (enemigo.muerto()) {
 					System.out.println("Enemigo vencido!");
 					juego.terminarRonda();

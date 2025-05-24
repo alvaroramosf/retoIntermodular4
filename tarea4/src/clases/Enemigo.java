@@ -5,6 +5,7 @@ import java.util.Random;
 
 public class Enemigo extends Personaje implements Serializable{
 	
+	private static final long serialVersionUID = 1L;
 	public Enemigo() {};
 	//No entiendo por que si la clase guerrero tiene defensa 10 y 
 	//el enemigo un maximo de ataque de 10 la clase guerreroe es 

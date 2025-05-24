@@ -3,6 +3,7 @@ package clases;
 import java.io.Serializable;
 
 public class Guerrero extends Personaje implements Jugable,Serializable {
+	private static final long serialVersionUID = 1L;
 	private static final int FUERZA = 15;
 	private static final int DEFENSA = 10;
 	private static final int POCIONES = 2;
