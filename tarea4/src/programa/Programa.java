@@ -7,26 +7,25 @@ import clases.Jugable;
 import clases.MiSerializable;
 import ioPuntuacion.ioPuntuacion;
 
-
-public class Programa implements MiSerializable  {
+public class Programa implements MiSerializable {
 	public static void main(String[] args) {
 		Scanner entrada = new Scanner(System.in);
 		boolean jugarDeNuevo = true;
 
-		while (jugarDeNuevo) {			
+		while (jugarDeNuevo) {
 			String[] mejorPuntuacion = ioPuntuacion.leerPuntuacion();
 			if (mejorPuntuacion != null) {
 				System.out.println("Mejor puntuación: " + mejorPuntuacion[0] + " ~ " + mejorPuntuacion[1]);
 			}
-			
+
 			System.out.println("¿Deseas cargar una partida guardada? (s/n)");
 			String cargar = entrada.nextLine();
 			Juego juego;
 
 			if (cargar.equalsIgnoreCase("s")) {
-			    juego = MiSerializable.cargarPartida();
+				juego = MiSerializable.cargarPartida();
 			} else {
-				juego = new Juego(); //Creacion de personaje
+				juego = new Juego(); // Creacion de personaje
 				System.out.println("Bienvenido al juego:");
 				System.out.print("¿Cuántas rondas quieres jugar? ");
 				int nRondas = entrada.nextInt();
@@ -44,17 +43,17 @@ public class Programa implements MiSerializable  {
 				} else {
 					juego.nuevoGuerrero(nombre);
 				}
-				
+
 				juego.iniciarJuego();
 			}
-			
 
 			while (!juego.finalJuego()) {
 				juego.setRonda(juego.getRonda() + 1);
 				System.out.println("Ronda: " + juego.getRonda() + "/" + juego.getnRondas());
 
 				Enemigo enemigo = juego.getSiguiente();
-				if (enemigo == null) break;
+				if (enemigo == null)
+					break;
 
 				System.out.println("Estás luchando contra: " + enemigo.toString());
 				System.out.println("Eres: " + juego.getJugador().toString());
@@ -72,14 +71,15 @@ public class Programa implements MiSerializable  {
 						juego.getJugador().atacar(enemigo);
 					} else if (accion == 2) {
 						System.out.println(juego.getJugador().getNombre() + " se cura");
-						((Jugable) juego.getJugador()).curar(); //Va a ser jugable siempre, otra opción sería cambiar getJugador para que devuelva jugable pero esto es mas sencillo y entiendo que es lo que se pide.
+						((Jugable) juego.getJugador()).curar(); // Va a ser jugable siempre, otra opción sería cambiar
+																// getJugador para que devuelva jugable pero esto es mas
+																// sencillo y entiendo que es lo que se pide.
 					} else if (accion == 3) {
-					    MiSerializable.guardarPartida(juego);
-					    System.out.println("Partida guardada. Adios. ");
-					    entrada.close();
-					    return;
+						MiSerializable.guardarPartida(juego);
+						System.out.println("Partida guardada. Adios. ");
+						entrada.close();
+						return;
 					}
-
 
 					if (!enemigo.muerto()) {
 						System.out.println(enemigo.getNombre() + " ataca a " + juego.getJugador().getNombre());
@@ -90,7 +90,7 @@ public class Programa implements MiSerializable  {
 
 					System.out.println("Ronda: " + juego.getRonda() + "/" + juego.getnRondas());
 				}
-				
+
 				if (enemigo.muerto()) {
 					System.out.println("Enemigo vencido!");
 					juego.terminarRonda();
@@ -119,12 +119,11 @@ public class Programa implements MiSerializable  {
 				if (rondasActuales > recordAnterior) {
 					System.out.println("NUEVO RECORD");
 					ioPuntuacion.escribirPuntuacion(juego.getJugador().getNombre(), rondasActuales);
-					
+
 					mejorPuntuacion = ioPuntuacion.leerPuntuacion();
 					System.out.println("Mejor puntuación: " + mejorPuntuacion[0] + " ~ " + mejorPuntuacion[1]);
 				}
 			}
-
 
 			System.out.print("¿Volver a jugar? (s/n): ");
 			entrada.nextLine();

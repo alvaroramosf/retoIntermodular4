@@ -2,7 +2,7 @@ package clases;
 
 import java.io.Serializable;
 
-public abstract class Personaje implements Serializable  {
+public abstract class Personaje implements Serializable {
 	private static final long serialVersionUID = 1L;
 // estadisticas
 	protected int vida;
@@ -11,7 +11,8 @@ public abstract class Personaje implements Serializable  {
 	protected int defensa;
 	protected String nombre;
 
-	public Personaje() {}
+	public Personaje() {
+	}
 
 	public Personaje(String nombre, int vida, int ataque, int defensa) {
 		this.nombre = nombre;
@@ -19,7 +20,7 @@ public abstract class Personaje implements Serializable  {
 		this.vidaInicial = vida; // vidaInicial se iguala a vida
 		this.ataque = ataque;
 		this.defensa = defensa;
-    }
+	}
 
 	// Getters
 	public int getVida() {
@@ -42,13 +43,13 @@ public abstract class Personaje implements Serializable  {
 		return nombre;
 	}
 
-    // Setters
+	// Setters
 	public void setVida(int vida) {
 		this.vida = vida;
 	}
 
 	public void setVidaInicial(int vidaInicial) {
-		this.vidaInicial =vidaInicial;
+		this.vidaInicial = vidaInicial;
 	}
 
 	public void setAtaque(int ataque) {
@@ -61,14 +62,13 @@ public abstract class Personaje implements Serializable  {
 
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
-    }
-
-	
-	public void atacar(Personaje otro) {
-	    int daño = (this.ataque - otro.getDefensa()) < 0 ? 0 : (this.ataque - otro.getDefensa());
-	    otro.setVida(otro.getVida() - daño);
 	}
-	
+
+	public void atacar(Personaje otro) {
+		int daño = (this.ataque - otro.getDefensa()) < 0 ? 0 : (this.ataque - otro.getDefensa());
+		otro.setVida(otro.getVida() - daño);
+	}
+
 	public void resetear() {
 		this.vida = this.vidaInicial;
 	}
@@ -76,10 +76,10 @@ public abstract class Personaje implements Serializable  {
 	public boolean muerto() {
 		return this.vida <= 0;
 	}
-	
+
 	@Override
 	public String toString() {
-		return this.nombre + ": vida: " +this.vida + "/" + this.vidaInicial;
+		return this.nombre + ": vida: " + this.vida + "/" + this.vidaInicial;
 	}
 
 }
