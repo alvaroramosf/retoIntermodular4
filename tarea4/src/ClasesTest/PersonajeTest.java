@@ -1,5 +1,7 @@
 package ClasesTest;
+import clases.Personaje;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
@@ -9,7 +11,7 @@ import clases.Personaje;
 public class PersonajeTest {
 	@Test
     void ConstructoresySettersTest() {
-        Personaje personaje = new Personaje("Test", 100, 10, 5);
+        Personaje personaje = new Personaje("Test", 100, 10, 5); // ES ABSTRACTA !!!!!!!!!!
         assertEquals("Test", personaje.getNombre());
         assertEquals(100, personaje.getVida());
         assertEquals(10, personaje.getAtaque());

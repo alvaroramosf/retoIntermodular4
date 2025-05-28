@@ -6,6 +6,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import clases.Guerrero;
+import clases.Mago;
 public class JugableTest {
 	  private Mago mago;
 	    private Guerrero guerrero;

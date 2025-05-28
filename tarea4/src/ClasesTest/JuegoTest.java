@@ -1,11 +1,16 @@
 package ClasesTest;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import clases.Enemigo;
+import clases.Guerrero;
 import clases.Juego;
+import clases.Mago;
 
 public class JuegoTest {
 	@Test
@@ -23,7 +28,7 @@ public class JuegoTest {
 		assertTrue(juego.getJugador() instanceof Mago);
 
 		juego.nuevoGuerrero("Aragon");
-		assertTrue(juego.getJugador() instanceof Guerreo);
+		assertTrue(juego.getJugador() instanceof Guerrero);
 	}
 
 	@Test
@@ -40,7 +45,7 @@ public class JuegoTest {
 
 	@Test
 	void NombreAleatorioTest() {
-		String nombre = Juego.RandomNombreEnemigo();
+		String nombre = Juego.getRandomNombreEnemigo();
 		assertNotNull("nombre");
 
 	}

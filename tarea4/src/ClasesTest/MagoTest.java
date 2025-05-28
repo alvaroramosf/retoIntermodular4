@@ -1,5 +1,6 @@
 package ClasesTest;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
@@ -9,10 +10,10 @@ import clases.Mago;
 import clases.Personaje;
 
 public class MagoTest {
-	@test
+	@Test
 	void ataqueMagicoTest() {
 		Mago mago=new Mago("Merlin",100);
-		Personaje enemigo=new Personaje("Vampiro",100,4,0);
+		Personaje enemigo=new Personaje("Vampiro",100,4,0); // ES ABSTRACTA !!!!!!!!!!!!!!!!!!!!!
 		
 		for(int i=0;i<10;i++) {
 			mago.atacar(enemigo);

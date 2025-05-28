@@ -16,7 +16,7 @@ public class Juego implements Serializable  {
 	private int ronda;
 	
 	public Juego() {
-		this.enemigos = new ArrayList<>();
+		this.setEnemigos(new ArrayList<>());
 	}
 	
 	public void setJugador(Personaje jugador) {
@@ -43,17 +43,17 @@ public class Juego implements Serializable  {
 		return this.ronda;
 	}
 	
-	static String getRandomNombreEnemigo() {
+	public static String getRandomNombreEnemigo() {
 		Random rand = new Random();
 		int index = rand.nextInt(NOMBRESENEMIGOS.length);
 		return NOMBRESENEMIGOS[index];
 	}
 	
 	public void iniciarJuego() {
-		if(this.enemigos.isEmpty()) {
+		if(this.getEnemigos().isEmpty()) {
 			for (int i = 0; i < nRondas; i++) {
-				enemigos.add(new Enemigo());
-				enemigos.get(i).iniciarEnemigo(getRandomNombreEnemigo());;
+				getEnemigos().add(new Enemigo());
+				getEnemigos().get(i).iniciarEnemigo(getRandomNombreEnemigo());;
 			}
 			this.ronda = 0;
 		} else {
@@ -63,8 +63,8 @@ public class Juego implements Serializable  {
 	
 	//Si es void no puede devolver a un enemigo, no entiendo lo que quieres decir en el enunciado
 	public Enemigo getSiguiente() {
-	    if (ronda < nRondas && !enemigos.isEmpty()) {
-	        return enemigos.remove(0);
+	    if (ronda < nRondas && !getEnemigos().isEmpty()) {
+	        return getEnemigos().remove(0);
 	    } else {
 	        System.out.println("No quedan enemigos");
 	        return null;
@@ -74,8 +74,8 @@ public class Juego implements Serializable  {
 	
 	
 	public boolean terminarRonda() {
-	    if (!enemigos.isEmpty()) {
-	        return enemigos.get(0).getVida() <= 0;
+	    if (!getEnemigos().isEmpty()) {
+	        return getEnemigos().get(0).getVida() <= 0;
 	    }
 	    return false;
 	}
@@ -98,7 +98,15 @@ public class Juego implements Serializable  {
 
 	
 	public boolean finalJuego() {
-		return enemigos.isEmpty();
+		return getEnemigos().isEmpty();
+	}
+
+	public ArrayList<Enemigo> getEnemigos() {
+		return enemigos;
+	}
+
+	public void setEnemigos(ArrayList<Enemigo> enemigos) {
+		this.enemigos = enemigos;
 	}
 
 }

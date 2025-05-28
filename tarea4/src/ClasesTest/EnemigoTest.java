@@ -1,15 +1,15 @@
 package ClasesTest;
 
 import clases.Enemigo;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.BeforeEach;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
 import org.junit.jupiter.api.Test;
 
 public class EnemigoTest {
 	@Test
 	void IniciarEneimgosTest() {
-		Enemigo enemigo = new enemigo();
+		Enemigo enemigo = new Enemigo();
 		enemigo.iniciarEnemigo("cthulhu");
 		assertNotNull(enemigo.getNombre());
 		assertTrue(enemigo.getVida() >= 20 && enemigo.getVida() <= 100);
